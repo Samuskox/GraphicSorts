@@ -11,6 +11,7 @@ import br.com.davidbuzatto.jsge.core.utils.CoreUtils;
 import br.com.davidbuzatto.jsge.core.utils.DrawingUtils;
 import br.com.davidbuzatto.jsge.geom.Rectangle;
 import br.com.davidbuzatto.jsge.image.Image;
+import br.com.davidbuzatto.jsge.imgui.GuiButton;
 import br.com.davidbuzatto.jsge.math.Vector2;
 
 /**
@@ -27,6 +28,7 @@ public class Main extends EngineFrame {
     private List<int[]> listaSelection;
     private int posSelection;
     private boolean ordenadoSelection = false;
+    private GuiButton button;
 
     private int[] array2;
     Vector2 retanguloInsertion;
@@ -71,6 +73,8 @@ public class Main extends EngineFrame {
      */
     @Override
     public void create() {
+
+        button = new GuiButton((getScreenWidth()/2) - 40, (getScreenHeight()/2) - 15, 80, 30, "Reiniciar", this);
 
         array  = gerarArray(10);
         array2 = gerarArray(10);
@@ -120,6 +124,35 @@ public class Main extends EngineFrame {
     public void update(double delta) {
 
         contadorTempo += delta;
+
+        button.update(delta);
+
+        if(button.isMousePressed()){
+            array  = gerarArray(10);
+            listaSelection.clear();
+            posSelection = 0;
+            copiarArray(listaSelection, array);
+            ordenarSelection(array);
+
+            array2 = gerarArray(10);
+            listaInsertion.clear();
+            posInsertion = 0;
+            copiarArray(listaInsertion, array2);
+            ordenarInsertion(array2);
+
+            array3 = gerarArray(10);
+            listaBubble.clear();
+            posBubble = 0;
+            copiarArray(listaBubble, array3);
+            ordenarBubble(array3);
+
+            array4 = gerarArray(10);
+            listaMerge.clear();
+            posMerge = 0;
+            copiarArray(listaMerge, array4);
+            ordenarMerge(array4);
+
+        }
 
         if (contadorTempo > tempoParaMudar) {
             
@@ -184,6 +217,8 @@ public class Main extends EngineFrame {
         if(posMerge == listaMerge.size() - 1){
             drawText("Ordenado", getScreenWidth()/2 + 60 + 150, getScreenHeight()/2 + 200, 15, GREEN);
         }
+
+        button.draw();
 
     }
 
