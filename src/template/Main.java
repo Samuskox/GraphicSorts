@@ -26,6 +26,7 @@ public class Main extends EngineFrame {
     Vector2 retanguloSelection;
     private List<int[]> listaSelection;
     private int posSelection;
+    private boolean ordenadoSelection = false;
 
     private int[] array2;
     Vector2 retanguloInsertion;
@@ -166,6 +167,24 @@ public class Main extends EngineFrame {
         drawText("Insertion Sort", getScreenWidth()/2 + 60, getScreenHeight()/2 - 25, 15, BLACK);
         drawText("Bubble Sort", 60, getScreenHeight()/2 + 200, 15, BLACK);
         drawText("Merge Sort", getScreenWidth()/2 + 60, getScreenHeight()/2 + 200, 15, BLACK);
+
+        
+        if(posSelection == listaSelection.size() - 1){
+            drawText("Ordenado", 250, getScreenHeight()/2 - 25, 15, GREEN);
+        }
+
+        if(posInsertion == listaInsertion.size() - 1){
+            drawText("Ordenado", getScreenWidth()/2 + 60 + 150, getScreenHeight()/2 - 25, 15, GREEN);
+        }
+
+        if(posBubble == listaBubble.size() - 1){
+            drawText("Ordenado", 60 + 150, getScreenHeight()/2 + 200, 15, GREEN);
+        }
+
+        if(posMerge == listaMerge.size() - 1){
+            drawText("Ordenado", getScreenWidth()/2 + 60 + 150, getScreenHeight()/2 + 200, 15, GREEN);
+        }
+
     }
 
     public void desenharArraySelection(int array[], Vector2 retangulo, int largura, int espacamento,
